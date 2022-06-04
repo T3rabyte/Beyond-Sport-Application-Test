@@ -7,7 +7,21 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public List<BallData> frameList = new List<BallData>();
+    public bool simStartedLocal = false;
 
+    public void Update()
+    {
+        if (GameObject.Find("DataManager").GetComponent<DataManager>().simStarted && !simStartedLocal) //if the sim started but not locally it will start the Movement
+        {
+            simStartedLocal = true;
+            InvokeRepeating("MoveToFramePos", 0f, 0.04f);
+        }
+        if (!GameObject.Find("DataManager").GetComponent<DataManager>().simStarted) //if the sim stoped it stops the sim locally
+        {
+            CancelInvoke();
+            simStartedLocal = false;
+        }
+    }
     public void SetFrameToList(string frame)
     {
         string[] splittedFrame = frame.Split(',');
@@ -20,6 +34,10 @@ public class Ball : MonoBehaviour
             BallSpeed = Int32.Parse(splittedFrame[3]),
         };
         frameList.Add(playerData);
-        Debug.Log(frameList.Count);
+    }
+
+    public void MoveToFramePos()
+    {
+        Debug.Log("Test");
     }
 }
