@@ -1,13 +1,32 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
     public DataManager dataManager;
 
+    public GameObject legendPanel;
+    public TMP_Text legendOpener;
+
     public Slider slider;
 
-
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) 
+        {
+            if (legendPanel.activeSelf)
+            {
+                legendPanel.gameObject.SetActive(false);
+                legendOpener.gameObject.SetActive(true);
+            }
+            else 
+            {
+                legendPanel.gameObject.SetActive(true);
+                legendOpener.gameObject.SetActive(false);
+            }
+        }
+    }
     public void StartSim()
     {
         dataManager.simStarted = true;
