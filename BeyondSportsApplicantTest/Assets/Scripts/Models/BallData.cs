@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BallData
 {
-    public int XPosition { get; set; }
-    public int YPosition { get; set; }
-    public int ZPosition { get; set; }
-    public int BallSpeed { get; set; }
+    public float XPosition { get; set; }
+    public float YPosition { get; set; }
+    public float ZPosition { get; set; }
+    public float BallSpeed { get; set; }
 }
